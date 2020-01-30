@@ -7,3 +7,37 @@
 # invalid. You can see my solution at thinkpython.com/code/circle_demo.py.
 
 # Current Status: Incomplete
+from tkinter import  *
+
+master = Tk()
+master.title('GUI')
+circle=False
+entry=True
+
+canvas=Canvas(master,width=300,height=300)
+canvas.pack()
+canvas.config(bg='red')
+def draw_circle():
+    global circle
+    circle= canvas.create_oval(50,50,200,200,fill='blue')
+
+
+def change_color():
+    if circle==False:
+        Label(text='Please make circle').pack()
+        return
+    try:
+        color=entry.get()
+        circle.config(fill=str(color))
+    except:
+        Label(text='Please enter valid color')
+        return
+
+
+button=Button(master,text='Create Circle',command=draw_circle,bg='green')
+entry=Entry(text='Enter a color').pack()
+button1=Button(master,text='Change Color', command=change_color).pack()
+
+
+button.pack()
+mainloop()
